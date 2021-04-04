@@ -8,23 +8,23 @@ function infiniteScroll(dataList, mySlide) {
     const numberOfData = dataList.length
     let scrollValue = 0, scrolled = 0
 
-    setInterval(function () {
-        scrolled++
-        if (scrolled < numberOfData)
-            scrollValue = scrollValue + width
+    // setInterval(function () {
+    //     scrolled++
+    //     if (scrolled < numberOfData)
+    //         scrollValue = scrollValue + width
 
-        else {
-            scrollValue = 0
-            scrolled = 0
-        }
-        if (mySlide) {
-            mySlide.current.scrollToOffset({
-                animated: true,
-                offset: scrollValue,
-            });
-        }
+    //     else {
+    //         scrollValue = 0
+    //         scrolled = 0
+    //     }
+    //     if (mySlide) {
+    //         mySlide.current.scrollToOffset({
+    //             animated: true,
+    //             offset: scrollValue,
+    //         });
+    //     }
 
-    }, 3000)
+    // }, 3000)
 }
 
 const Carousel = ({ data }) => {
@@ -34,10 +34,10 @@ const Carousel = ({ data }) => {
     let position = Animated.divide(scrollX, width);
     const [dataList, setDataList] = useState(data);
 
-    useEffect(() => {
-        setDataList(data);
-        infiniteScroll(dataList, mySlide);
-    })
+    // useEffect(() => {
+    //     setDataList(data);
+    //     infiniteScroll(dataList, mySlide);
+    // })
 
 
     if (data && data.length) {
@@ -61,7 +61,7 @@ const Carousel = ({ data }) => {
                         { useNativeDriver: false }
                     )}
                 />
-                <View style={styles.dotView}>
+                {/* <View style={styles.dotView}>
                     {data.map((_, i) => {
                         let opacity = position.interpolate({
                             inputRange: [i - 1, i, i + 1],
@@ -76,7 +76,7 @@ const Carousel = ({ data }) => {
                         )
                     })}
 
-                </View>
+                </View> */}
             </View>
         )
     }

@@ -18,6 +18,7 @@ mongoose.connect(uri,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopolog
 const connection= mongoose.connection;
 connection.once('open',()=>{
     console.log("Mongodb Connected!....")
+    
 })
 const login = require("./routes/login")
 app.get('/',(req,res)=>{

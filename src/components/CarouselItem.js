@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
+import { View, StyleSheet, Text, Image, Dimensions,TextInput } from 'react-native'
 
 const { width, height } = Dimensions.get('window')
 
@@ -7,11 +7,46 @@ const { width, height } = Dimensions.get('window')
 const CarouselItem = ({ item }) => {
     return (
         <View style={styles.cardView}>
-            <Image style={styles.image} source={{ uri: item.url }} />
+          
             <View style={styles.textView}>
                 <Text style={styles.itemTitle}> {item.title}</Text>
-                <Text style={styles.itemDescription}>{item.description}</Text>
             </View>
+            <View>
+            <Text style={styles.textView}>Brand Name: </Text>
+            <TextInput style={styles.textinput} />
+            </View>
+            <View>
+            <Text style={styles.textView}>Grade: </Text>
+            <TextInput style={styles.textinput} />
+            </View>
+            <View>
+            <Text style={styles.textView}>Type: </Text>
+            <TextInput style={styles.textinput} />
+            </View>
+            <View>
+            <Text style={styles.textView}>Quality: </Text>
+            <TextInput style={styles.textinput} />
+            </View>
+            <View>
+            <Text style={styles.textView}>Price: </Text>
+            <TextInput style={styles.textinput} />
+            </View>
+            <View 
+                  //onClick={this.checkLogin}
+                style={{
+                    marginHorizontal:55,
+                    alignItems:"center",
+                    justifyContent:"center",
+                    marginTop:30,
+                    backgroundColor:"#00716F",
+                    paddingVertical:10,
+                    borderRadius:23
+                }}>
+                    <Text style={{
+                        color:"white",
+                        fontFamily:"SemiBold"
+                    }}>Add</Text>
+                </View>
         </View>
     )
 }
@@ -32,11 +67,23 @@ const styles = StyleSheet.create({
     },
 
     textView: {
-        position: 'absolute',
-        bottom: 25,
-        margin: 10,
-        left: 5,
+        color: 'black',
+        fontSize: 20,
+        marginLeft:10,
+        marginBottom: 10,
+        fontWeight: "bold",
+        elevation: 5
     },
+    textinput:{
+        position: 'absolute',
+        marginLeft:150,
+        fontSize:15, 
+        height: 30, 
+        width:150,
+        borderColor: "#00000", 
+        borderWidth: 2,
+         padding: 2 
+        },
     image: {
         width: width - 20,
         height: height / 3,
@@ -45,9 +92,11 @@ const styles = StyleSheet.create({
     itemTitle: {
         color: 'black',
         fontSize: 22,
+        marginTop:10,
         marginBottom: 5,
         fontWeight: "bold",
-        elevation: 5
+        elevation: 5,
+        alignSelf:"center"
     },
     itemDescription: {
         color: 'black',
