@@ -21,12 +21,14 @@ connection.once('open',()=>{
     
 })
 const login = require("./routes/login")
+//const sms = require('./routes/sms')
 app.get('/',(req,res)=>{
          console.log("Heloo!")
 });
 
 
 app.use('/login',login)
+// app.use('/sms',sms)
 
 app.listen(port,()=>{ 
     console.log(`Server is connected to the posrt:${port}`);

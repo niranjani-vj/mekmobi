@@ -6,7 +6,8 @@ import { Card, ListItem, Button } from 'react-native-elements'
 import Icon from '@expo/vector-icons/AntDesign';
 import Carousel from '../components/Carousel'
 import { dummyData } from '../Data/images'
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { DrawerActions } from 'react-navigation-drawer';
+
 
 
 
@@ -36,7 +37,10 @@ export default class Home extends React.Component {
                         marginRight: 25,
                         marginTop: 5,
                         fontFamily: "SemiBold",
-                    }} size={24} />
+                    }} size={24} 
+                    onPress={() =>this.props.navigation.dispatch(DrawerActions.openDrawer())}
+                   
+                    />
                 MekMobiAnalysis</Text>
                 {/* <Carousel data = {dummyData}/> */}
                 <Card >
@@ -66,7 +70,7 @@ export default class Home extends React.Component {
                 <Card >
                     <Card.Title style={{ fontSize: 20 }}>Repair</Card.Title>
                     <Card.Divider />
-                    <Card.Image source='https://image.freepik.com/free-vector/car-repair-illustration-wheel-replacement-offer-car-service_81522-2947.jpg'>
+                    <Card.Image  onPress={() => navigate('Booking')}  source='https://image.freepik.com/free-vector/car-repair-illustration-wheel-replacement-offer-car-service_81522-2947.jpg'>
 
                         {/* <Button
                             buttonStyle={{ width:20 ,borderRadius: 0, marginTop: 120, marginRight: 0, marginBottom: 0, position: "relative" }}

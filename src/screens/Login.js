@@ -2,9 +2,7 @@ import React from "react";
 import { Text, View, Image, TextInput } from "react-native";
 import Icon from "@expo/vector-icons/AntDesign";
 import axios from "axios";
-const TWILIO_ACCOUNT_SID = "AC39142b48bec8f5ab2c7119139d873e6d";
-const TWILIO_AUTH_TOKEN = "799b1e853ad847267c8341089de78199";
-const twilio = require("twilio")(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -12,34 +10,30 @@ export default class Login extends React.Component {
       phone: null,
       password: null,
     };
-    this.checkLogin = this.checkLogin.bind(this);
+    //this.checkLogin = this.checkLogin.bind(this);
   }
   checkLogin = (e) => {
-    // e.preventDefault();
-    // console.log("check!")
-    // const user={
-    //     phone:this.state.phone,
-    //     //password:this.state.password
-    // }
-    // console.log(user.phone)
-
-    twilio.verify
-      .services("VAac9a9793c2d53c2b8ffa19487943848b")
-      .verifications.create({ to: "+918553482020", channel: "sms" })
-      .then((verification) => console.log(verification.status));
-    // axios.get('http://localhost:5000/login', user)
-    // .then(res => {
-    //     console.log(res.data)
-    //     if (res.data != null) {
-    //         this.props.navigation.navigate('Home');
-    //     }
-    //     else {
-    //         alert("Wrong Login Id.. ");
-    //         this.props.navigation.navigate('Login');
-    //     }
-    // })
-    //  let path = `/home`
-    //  this.props.navigation.navigate('Home');
+    e.preventDefault();
+    console.log("check!")
+    const user={
+        phone:this.state.phone,
+        password:this.state.password
+    }
+    console.log(user.phone)
+  
+    axios.get('http://localhost:5000/login', user)
+    .then(res => {
+        console.log(res.data)
+        if (res.data != null) {
+            this.props.navigation.navigate('Home');
+        }
+        else {
+            alert("Wrong Login Id.. ");
+            this.props.navigation.navigate('Login');
+        }
+    })
+     let path = `/home`
+     this.props.navigation.navigate('Home');
   };
 
   render() {

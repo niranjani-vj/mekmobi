@@ -7,7 +7,7 @@ import Carousel from "../components/Carousel";
 import { dummyData } from "../Data/images";
 import axios from "axios";
 
-export default class Services extends React.Component {
+export default class Booking extends React.Component {
     
   render() {
     

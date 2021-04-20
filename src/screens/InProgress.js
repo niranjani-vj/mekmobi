@@ -6,17 +6,34 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import Carousel from "../components/Carousel";
 import { dummyData } from "../Data/images";
 import axios from "axios";
+import { createNavigationContainer } from "react-navigation";
 
 export default class Services extends React.Component {
     
   render() {
-    
-  
+    const { navigate } = this.props.navigation
+    //const { goBack } = this.props.navigation;
     return (
         
       <View style={{ backgroundColor: "#FFF", height: "100%" }}>
       
-       
+        {/* <Text
+          style={{
+            fontSize: 30,
+            marginTop: 20,
+            fontFamily: "SemiBold",
+            alignSelf: "center",
+          }}
+        >
+          MekMobiAnalysis
+          <Icon
+            name="home"
+            color="#00000"
+            style={{ marginLeft: 20 }}
+            size={24}
+            onPress={() => navigate("Home")}
+          />
+        </Text> */}
 
         <View style={{ padding: 10, marginTop: 10 }}>
           

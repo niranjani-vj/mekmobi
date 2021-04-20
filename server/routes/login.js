@@ -17,24 +17,48 @@ router.route("/add").post((req, res) => {
     phone,
     password,
   });
-  twilio.verify
-    .services("VAac9a9793c2d53c2b8ffa19487943848b")
-    .verifications.create({ to: phone, channel: "sms" })
-    .then((verification) => console.log(verification.status));
-    //const opt = req.body.otp;
-    // twilio.verify.services('VAac9a9793c2d53c2b8ffa19487943848b')
-    //   .verificationChecks
-    //   .create({to: phone, code: otp})
-    //   .then(verification_check => console.log(verification_check.status));
-      if(verification_check.status=="approved"){
-        newUser
-        .save()
-        .then(() => res.json("User added"))
-        .catch((err) => res.status(400).json("Error:" + err));
-      }else{
-          console.log("status: "+verification_check.status)
-      }
- 
+
+  newUser
+    .save()
+    .then(() => res.json("User added"))
+    .catch((err) => res.status(400).json("Error:" + err));
 });
+
+// router.route("/getcode").get((req, res) => {
+//   console.log("code")
+//   twilio.verify
+//     .services(process.env.VERIFY_SERVICE_SID)
+//     .verifications.create({ to: "+918553482020", channel: "sms" })
+//     .then(data => {
+//       res.status(200).send(data);
+//   })
+// })
+
+router.route("/getcode").post((req, res) => {
+  console.log("code")
+  const { phone } = req.body;
+
+  // Check For Existing User
+  User.findOne({ phone })
+      .then(existingUser => {
+          if(!existingUser) return res.status(400).json({ msg: 'User does not exist with this Mobile No.' });
+          
+          const digits = '0123456789';
+          let otp = '';
+          for (let i=0;i<6;++i) {
+          otp += digits[Math.floor(Math.random() * 10)];
+          }
+
+          existingUser.password = otp;
+          existingUser.save()
+              .then(updatedUser => {
+                  res.sendStatus(200);
+              })
+              .catch(err => {
+                  res.status(500).json({ msg: 'Unable to save to database.' });
+              });
+})
+});
+
 
 module.exports = router;
